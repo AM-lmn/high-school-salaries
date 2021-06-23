@@ -1,18 +1,61 @@
 ---
 title: "High School Performance and Future Salary, by College"
 description: |
-  My final project.
+  This project is about doing stuff.
 site: distill::distill_website
 ---
 
-```{r setup, include=FALSE}
+```{r setup, layout = "l-body-outset", include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggthemes)
+library(knitr)
+library(rmarkdown)
+library(gt)
+library(plotly)
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
+college_data <- read_csv("rawdata/College_Data.csv")
+salary_by_degree <- read_csv("rawdata/degrees-that-pay-back.csv")
+salary_by_college <- read_csv("rawdata/salaries-by-college-type.csv")
+salary_by_region <- read_csv("rawdata/salaries-by-region.csv")
 ```
 
+```{r, cleaning}
+college_data_clean <- college_data %>%
+  rename(college = X1) %>%
+  select(college, Top10perc)
+# paged_table(college_data_clean)
+
+salary_by_degree_clean <- salary_by_degree %>%
+  select("Undergraduate Major", "Mid-Career Median Salary")
+# paged_table(salary_by_degree_clean)
+
+salary_by_region_clean <- salary_by_region %>%
+  select("School Name", "Mid-Career Median Salary")
+# paged_table(salary_by_region_clean)
+
+salary_by_college_clean <- salary_by_college %>%
+  select("School Name", "Mid-Career Median Salary")
+# paged_table(salary_by_college_clean)
+
+salary_by_college_full <- left_join(salary_by_region_clean, salary_by_college_clean, by = "School Name") %>%
+  select("School Name", "Mid-Career Median Salary.x") %>%
+  rename(college = "School Name", median_salary_mid_career = "Mid-Career Median Salary.x") %>%
+  drop_na()
+
+college_top10_salary <- left_join(college_data_clean, salary_by_college_full, by = "college") %>%
+  drop_na() %>%
+  arrange(desc(Top10perc))
+
+college_top10_salary$median_salary_mid_career <- as.numeric(gsub('[$,]', '', college_top10_salary$median_salary_mid_career))
+
+college_top10_salary_plot <- college_top10_salary %>%
+  ggplot(mapping = aes(x = Top10perc,
+                       y = median_salary_mid_career,
+                       text = college)) +
+    geom_point() +
+    labs(title = "High School Performance and Predicted Future Salary, by College",
+         x = "Percent of students who were in the top 10% of students at their high school",
+         y = "Mid-Career Median Salary")
+ggplotly(college_top10_salary_plot)
+```

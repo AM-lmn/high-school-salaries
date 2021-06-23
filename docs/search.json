@@ -1,0 +1,21 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-06-23T18:10:50-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "High School Performance and Future Salary, by College",
+      "description": "My final project.\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-06-23T18:10:51-05:00"
+    }
+  ],
+  "collections": []
+}

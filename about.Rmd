@@ -4,6 +4,22 @@ description: |
   Some additional details about the website
 ---
 
+## About me
+I am **Ajay Malik**, an incoming senior at William Fremd High School. I like to ride my bike during the summer, and code in R and Python.
+
+## About the project
+This project is titled *High School Performance and Future Salary, by College*, and this project analyzes the correlation between high performance in high school and predicted future salary.
+
+### Goals
+* To learn how to make neat websites using Distill
+  + Titling is a bit weird but I will figure it out
+* To create easy-to-understand visualizations that are available on the web
+
+"This is data science"  
+~ Preceptor
+
+[“Kane’s Free High School Data Science Bootcamp”]("https://bootcamp.davidkane.info/")
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```

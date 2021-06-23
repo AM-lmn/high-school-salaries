@@ -1,7 +1,7 @@
 ---
 title: "High School Performance and Future Salary, by College"
 description: |
-  This project is about doing stuff.
+  This project analyzes a small subset of colleges in the US in order to establish a correlation between the performance of the undergraduates of these colleges in high school, and their mid-career median salary. As you can see, the trend is mostly positive.
 site: distill::distill_website
 ---
 

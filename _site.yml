@@ -9,4 +9,14 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Raw Data"
+      href: raw_data_page.html
+    - text: "Sources"
+      menu:
+        - text: "College and Ranking Data"
+          href: college_ranking_data.html
+        - text: "College and Salary Data"
+          href: college_salary_data.html
+        - text: "GPA Data"
+          href: gpa_data.html
 output: distill::distill_article

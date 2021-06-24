@@ -1,7 +1,7 @@
 ---
 title: "High School Performance and Future Salary, by College"
 description: |
-  This project analyzes a small subset of colleges in the US in order to establish a correlation between the performance of the undergraduates of these colleges in high school, and their mid-career median salary. As you can see, the trend is mostly positive. Update check.
+  This project analyzes a small subset of colleges in the US in order to establish a correlation between the performance of the undergraduates of these colleges in high school, and their mid-career median salary.
 site: distill::distill_website
 ---
 
@@ -52,11 +52,27 @@ college_top10_salary_gpa_plot <- college_top10_salary_gpa %>%
   ggplot(mapping = aes(x = Top10perc,
                        y = median_salary_mid_career,
                        text = college)) +
-    geom_point() +
+    geom_point(aes(color = Top10perc)) +
     labs(title = "High School Performance and Predicted Future Salary, by College",
          x = "Percent of students who were in the top 10% of students at their high school",
-         y = "Mid-Career Median Salary")
+         y = "Mid-Career Median Salary") +
+    geom_smooth(formula = y ~ x,
+                method = "lm")
 ggplotly(college_top10_salary_gpa_plot)
 
 # This plotly plot is a for top10perc and salary, make another one by avg_gpa and salary! Also add some color to this graph its ugly af
+
+college_top10_salary_gpa_plot2 <- college_top10_salary_gpa %>%
+  ggplot(mapping = aes(x = avg_gpa,
+                       y = median_salary_mid_career,
+                       text = college,
+                       color = avg_gpa)) +
+    geom_point() +
+    labs(title = "High School Performance and Predicted Future Salary, by College",
+         x = "Average high school GPA of admitted undergraduates",
+         y = "Mid-Career Median Salary")
+ggplotly(college_top10_salary_gpa_plot2)
 ```
+
+## Overall Trend
+There is a roughly positive correlation between 

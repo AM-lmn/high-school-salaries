@@ -2,14 +2,16 @@
 title: "College and Ranking Data"
 date: "`r Sys.Date()`"
 output: distill::distill_article
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Placeholder.
-https://www.kaggle.com/yashgpt/us-college-data
+The college and rankings data (Which had the top 10% data) is provided by Yash Gupta on Kaggle. [@rankings]
+
+[Check out the dataset here.](https://www.kaggle.com/yashgpt/us-college-data)
 
 
 

@@ -2,14 +2,14 @@
 title: "GPA Data"
 date: "`r Sys.Date()`"
 output: distill::distill_article
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Placeholder.
-GPA data was manually compiled. I will remember from where in a bit.
+GPA data was manually compiled using available statistics from [collegesimply.com.](https://www.collegesimply.com/) [@gpa]
 
 
 

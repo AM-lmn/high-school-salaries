@@ -56,7 +56,8 @@ college_top10_salary_gpa_plot <- college_top10_salary_gpa %>%
     geom_point(aes(color = Top10perc)) +
     labs(title = "High School Performance and Future Salary, by ranking",
          x = "Percent of students who were in the top 10% at their high school",
-         y = "Mid-Career Median Salary") +
+         y = "Mid-Career Median Salary, in $",
+         color = "Top 10%") +
     geom_smooth(formula = y ~ x,
                 method = "lm")
 ggplotly(college_top10_salary_gpa_plot)
@@ -69,7 +70,8 @@ college_top10_salary_gpa_plot2 <- college_top10_salary_gpa %>%
     geom_point() +
     labs(title = "High School Performance and Future Salary, by GPA",
          x = "Average high school GPA of undergraduates (out of 4.0)",
-         y = "Mid-Career Median Salary")
+         y = "Mid-Career Median Salary, in $",
+         color = "GPA")
 ggplotly(college_top10_salary_gpa_plot2)
 ```
 

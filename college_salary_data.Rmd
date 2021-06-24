@@ -2,11 +2,13 @@
 title: "College and Salary Data"
 date: "`r Sys.Date()`"
 output: distill::distill_article
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Placeholder.
-https://www.kaggle.com/wsj/college-salaries?select=salaries-by-college-type.csv
+The college and salary data is provided by the Wall Street Journal, based on data from Payscale, Inc. [@salaries]
+
+[Check out the dataset here.](https://www.kaggle.com/wsj/college-salaries)

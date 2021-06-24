@@ -28,11 +28,9 @@ college_data_clean <- college_data %>%
 
 salary_by_region_clean <- salary_by_region %>%
   select("School Name", "Mid-Career Median Salary")
-# paged_table(salary_by_region_clean)
 
 salary_by_college_clean <- salary_by_college %>%
   select("School Name", "Mid-Career Median Salary")
-# paged_table(salary_by_college_clean)
 
 salary_by_college_full <- left_join(salary_by_region_clean, salary_by_college_clean, by = "School Name") %>%
   select("School Name", "Mid-Career Median Salary.x") %>%

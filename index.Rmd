@@ -1,7 +1,7 @@
 ---
 title: "High School Performance and Future Salary, by College"
 description: |
-  This project analyzes a small subset of colleges in the US in order to establish a correlation between the performance of the undergraduates of these colleges in high school, and their mid-career median salary.
+  Some people like to tell stressed-out students that grades aren't super important. However, for those who are intensely focused on their future careers, maybe working to get an A on that test or being at the top of your class will be worthwhile.
 site: distill::distill_website
 ---
 
@@ -21,6 +21,7 @@ salary_by_college <- read_csv("rawdata/salaries-by-college-type.csv")
 salary_by_region <- read_csv("rawdata/salaries-by-region.csv")
 ```
 
+*These graphs are interactive! Click around on them as much as you'd like.*
 ```{r, cleaning}
 college_data_clean <- college_data %>%
   rename(college = X1) %>%
@@ -53,14 +54,12 @@ college_top10_salary_gpa_plot <- college_top10_salary_gpa %>%
                        y = median_salary_mid_career,
                        text = college)) +
     geom_point(aes(color = Top10perc)) +
-    labs(title = "High School Performance and Predicted Future Salary, by College",
-         x = "Percent of students who were in the top 10% of students at their high school",
+    labs(title = "High School Performance and Future Salary, by ranking",
+         x = "Percent of students who were in the top 10% at their high school",
          y = "Mid-Career Median Salary") +
     geom_smooth(formula = y ~ x,
                 method = "lm")
 ggplotly(college_top10_salary_gpa_plot)
-
-# This plotly plot is a for top10perc and salary, make another one by avg_gpa and salary! Also add some color to this graph its ugly af
 
 college_top10_salary_gpa_plot2 <- college_top10_salary_gpa %>%
   ggplot(mapping = aes(x = avg_gpa,
@@ -68,11 +67,13 @@ college_top10_salary_gpa_plot2 <- college_top10_salary_gpa %>%
                        text = college,
                        color = avg_gpa)) +
     geom_point() +
-    labs(title = "High School Performance and Predicted Future Salary, by College",
-         x = "Average high school GPA of admitted undergraduates",
+    labs(title = "High School Performance and Future Salary, by GPA",
+         x = "Average high school GPA of undergraduates (out of 4.0)",
          y = "Mid-Career Median Salary")
 ggplotly(college_top10_salary_gpa_plot2)
 ```
 
 ## Overall Trend
-There is a roughly positive correlation between 
+Universities that are considered the most prestigious (*e.g. Harvard, Yale, Princeton*) are more often than not in the top-right corner for both of these graphs. This means that the overwhelming majority of their students have insanely high GPAs, were at the very top of their class, and will be making the most salary mid-career.
+
+**The plots are somewhat linear, which suggests that there is a weak correlation between high school performance, and future salary.**

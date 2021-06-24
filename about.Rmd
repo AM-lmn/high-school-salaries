@@ -1,24 +1,25 @@
 ---
-title: "About this site"
-description: |
-  Some additional details about the website
+title: "About This Project"
 ---
 
 ## About me
-I am **Ajay Malik**, an incoming senior at William Fremd High School. I like to ride my bike during the summer, and code in R and Python.
+I'm **Ajay Malik**, an incoming senior at William Fremd High School. I am hoping to major in CS at any schools with top-notch engineering/CS coursework. I like to ride my bike during the summer, and code in R and Python.
 
 ## About the project
-This project is titled *High School Performance and Future Salary, by College*, and this project analyzes the correlation between high performance in high school and predicted future salary.
+This project is titled *High School Performance and Future Salary, by College*, and this project aims to analyze the correlation between performance in high school and predicted future salary among a small sample of colleges in the US. The data can be viewed either by percentage of students in the top 10% of their high school, or average high school GPA of students.
 
-### Goals
-* To learn how to make neat websites using Distill
-  + Titling is a bit weird but I will figure it out
-* To create easy-to-understand visualizations that are available on the web
+## Goals
+* To help myself, and other students soon-to-enter the college admissions process understand what kind of students attend certain universities.
+  + *Disclaimer: stats are not everything! Personal achievements along with the quality of your essay, and any number of other factors play a part in determining who gets admitted and who doesn't. Don't let this website discourage you!*
+* To help students focused on their careers understand what college is right for them.
 
-"This is data science"  
-~ Preceptor
+### Contact me
+* [GitHub](https://github.com/AM-lmn)
+* amalik34@hotmail.com
+* malik1539@students.d211.org
 
-[“Kane’s Free High School Data Science Bootcamp”]("https://bootcamp.davidkane.info/")
+### Credits
+This project would not have been possible without the help of [Kane's Free High School Data Science Bootcamp](https://bootcamp.davidkane.info/). Additionally, check out the [Primer for Bayesian Data Science](https://ppbds.github.io/primer/index.html) made by David Kane (and his apprentices) to learn some more about how to do data science with R.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

@@ -1,23 +1,61 @@
 ---
 title: "Raw Data"
 description: |
-  A new article created using the Distill format.
-author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  Don't feel like looking at a graph? Sift through the raw data here by yourself!
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(DT)
+library(tidyverse)
 ```
 
-The raw data will be here.
+```{r getdata}
+college_data <- read_csv("rawdata/College_Data.csv")
+salary_by_degree <- read_csv("rawdata/degrees-that-pay-back.csv")
+salary_by_college <- read_csv("rawdata/salaries-by-college-type.csv")
+salary_by_region <- read_csv("rawdata/salaries-by-region.csv")
+```
 
+## College and rankings data
+```{r}
+datatable(college_data)
+```
 
+## College and salaries data 
+```{r}
+datatable(salary_by_college)
+datatable(salary_by_region)
+```
 
+## College and GPA data
+```{r}
+college_data_clean <- college_data %>%
+  rename(college = X1) %>%
+  select(college, Top10perc)
 
+salary_by_region_clean <- salary_by_region %>%
+  select("School Name", "Mid-Career Median Salary")
 
+salary_by_college_clean <- salary_by_college %>%
+  select("School Name", "Mid-Career Median Salary")
+
+salary_by_college_full <- left_join(salary_by_region_clean, salary_by_college_clean, by = "School Name") %>%
+  select("School Name", "Mid-Career Median Salary.x") %>%
+  rename(college = "School Name", median_salary_mid_career = "Mid-Career Median Salary.x") %>%
+  drop_na()
+
+college_top10_salary <- left_join(college_data_clean, salary_by_college_full, by = "college") %>%
+  drop_na() %>%
+  arrange(desc(Top10perc))
+
+college_top10_salary$median_salary_mid_career <- as.numeric(gsub('[$,]', '', college_top10_salary$median_salary_mid_career))
+
+college_top10_salary_gpa <- college_top10_salary %>%
+  slice(-c(71, 82, 84)) %>%
+  add_column(avg_gpa = c(3.96, 3.95, 3.94, 4.04, 3.87, 3.95, 3.94, 3.95, 3.92, 3.90, 3.91, 3.94, 3.86, 3.91, 3.91, 3.90, 3.93, 3.80, 3.90, 3.86, 3.89, 3.76, 3.82, 3.87, 3.40, 3.86, 3.89, 3.80, 3.60, 3.92, 3.85, 3.50, 3.75, 3.57, 3.54, 3.74, 3.90, 3.50, 3.64, 3.81, 3.59, 3.74, 3.65, 3.40, 3.40, 3.80, 3.87, 3.81, 4.18, 3.30, 3.66, 3.74, 3.46, 3.63, 3.49, 3.74, 3.60, 3.59, 3.73, 3.69, 3.59, 3.86, 3.42, 3.62, 3.53, 3.58, 3.60, 3.55, 3.60, 3.50, 3.51, 3.76, 3.50, 3.60, 3.50, 3.40, 3.60, 3.54, 3.50, 3.29, 3.42, 3.57, 4.05, 3.37, 3.48, 3.30, 3.66, 3.50, 3.21, 3.91, 3.30, 3.60, 3.30, 3.00, 3.10, 3.67, 3.36, 3.21, 3.23, 2.70, 3.34, 2.99))
+
+datatable(college_top10_salary_gpa)
+```
